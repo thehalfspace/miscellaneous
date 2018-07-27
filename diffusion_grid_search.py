@@ -14,24 +14,31 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# trial data set
-D = 10*np.random.random(10) # 10 random points betewen 0 and 100
-t = 20*np.random.random(10) # 10 random points between 0 and 20
+# input data set
+D = np.array([4, 6, 16])
+t = np.array([3600, 21600, 86400])
 
-D0 = 0.5 # assumed initial condition
+D0 = 3 # assumed initial condition
 
 # Seach space for the unknowns
-k = np.linspace(-100, 100, 1000) # 10k values between -1000 to 1000
-n = np.linspace(2,3,10) # 1000 values between 2 and 3
+nk = 10000
+nn = 10
+k = np.linspace(1.0e-6, 1.0e2, nk) # 10k values between -1000 to 1000
+n = np.linspace(2, 3, nn) # 1000 values between 2 and 3
 
-misfit = np.ones((1000, 100))
+misfit = np.zeros((nk, nn))
 
-for it_k in range(len(k)):
-    for it_n in range(len(n)): # search iterations for n
+for idk in range(nk):
+    for idn in range(nn):
 
-        misfit[it_k, it_n] = np.linalg.norm(D**n[it_n] - D0**n[it_n] - k[it_k]*t)
+        residual = D**n[idn] - D0**n[idn] - k[idk]*t
+
+        misfit[idk, idn] = np.linalg.norm(residual)
 
 
+#misfit = misfit[np.nonzero(misfit)]
 
 idx = np.where(misfit == misfit.min())
 
+print("\nOptimized k = ", k[idx[0][0]])
+print("\nOptimized n = ", n[idx[1][0]])

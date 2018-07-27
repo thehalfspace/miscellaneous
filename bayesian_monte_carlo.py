@@ -17,23 +17,23 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# dummy data set
-D = 10*np.random.random(10) # 10 random points betewen 0 and 100
-t = 20*np.random.random(10) # 10 random points between 0 and 20
 
-D0 = 0.5 # assumed initial condition
+# input data set
+D = np.array([4, 6, 16])
+t = np.array([3600, 21600, 86400])
 
+D0 = 3 # assumed initial condition
 
 # Search space
-# k = -100 to 100
+# k = 1e-6 to 1e6
 # n = 2 to 3
 
 # number of trial models
 no = 1000000
 
 # Initial set of trial values
-k_trial = np.random.uniform(-100, 100, no)
-n_trial = np.random.uniform(1.9,3.1,no)
+k_trial = np.random.uniform(1.0e-6, 1.0e2, no)
+n_trial = np.random.uniform(2,3,no)
 
 # Plot function
 def plotModels(k_trial, n_trial, title):
@@ -64,7 +64,7 @@ def plotModels(k_trial, n_trial, title):
     plt.show()
 
 # Plot trial models
-plotModels(k_trial, n_trial, "Search Space")
+#plotModels(k_trial, n_trial, "Search Space")
 
 # Calculate misfit
 misfit = np.zeros(no)
@@ -96,5 +96,7 @@ n_post = n_post[np.nonzero(n_post)]
 k_post = k_post[np.nonzero(k_post)]
 
 # Plot posterior models
-plotModels(n_post, k_post, "Posterior Models")
+#plotModels(n_post, k_post, "Posterior Models")
 
+print("Optimized n value = ", np.mean(n_post))
+print("Optimized k value = ", np.mean(k_post))
