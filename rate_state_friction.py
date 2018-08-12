@@ -1,6 +1,5 @@
 # Quasi-dynamic 1D earthquake model: rate and state friction solver
 
-
 import numpy as np
 from scipy.optimize import fsolve
 from scipy.integrate import ode, odeint
@@ -27,11 +26,12 @@ class Parameters:
 
 class RSF:
 
+    # Regularized rate and state friction law
     def F(V, Seff, state):
         f = a * np.arcsinh(V/(2*Vo)*np.exp(state/a))
-
         return f*Seff
 
+    # State evolution: aging law
     def G(V, state):
         return (b*Vo/Dc)*(np.exp((fo - state)/b) - (V - Vo))
 
