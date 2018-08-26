@@ -15,14 +15,14 @@ class Parameters:
     L = 60*1000      # width of plate boundary (m)
     k = mu/L         # stiffness aka spring constant
 
-    Vpl = 1e-9
+    Vpl = 1e-9       # Plate motion rate at constant velocity
 
     Seff = 50e6     # effective normal stress (Pa)
-    a = 0.015
-    b = 0.02
-    Dc = 0.2
-    fo = 0.6
-    Vo = 1e-6
+    a = 0.015       # rate and state friction parameter 'a'
+    b = 0.02        # rate and state friction parameter 'b'
+    Dc = 0.2        # critical slip distance Dc
+    fo = 0.6        # static friction coefficient
+    Vo = 1e-6       # when V = V0, f = f0.
 
 class RSF:
 
