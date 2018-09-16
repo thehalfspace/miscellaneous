@@ -1,9 +1,14 @@
+# A diary entry of my simulations
+
+
+---
+
 09-16-2018
 ==========
 
-Name: sim06
-Output file: data06.out
-PBS: pmem-8gb, nodes=1:ppn=4
+- Name: sim06
+- Output file: data06.out
+- PBS: pmem-8gb, nodes=1:ppn=4
 
 Compute time:
 
