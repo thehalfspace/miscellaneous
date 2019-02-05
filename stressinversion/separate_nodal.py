@@ -1,5 +1,6 @@
 ##################################################
 #   SEPARATE THE FAULT/NODAL PLANES GCMT DATA FILE
+#   reformat to match the input for msatsi
 #	
 #       Author: Prithvi
 #	Date Created: 01-25-2019
@@ -13,9 +14,10 @@ import numpy as np
 #   Input file is the output from gmt
 #   it is the projected earthquake data
 
-dataA = np.genfromtxt('projection1.dat', usecols=(3,4,5))
-dataB = np.genfromtxt('projection1.dat', usecols=(6,7,8))
-dataC = np.zeros((2*len(dataA),3))
+dataA = np.genfromtxt('projection2.dat', usecols=(3,4,5))
+dataB = np.genfromtxt('projection2.dat', usecols=(6,7,8))
+dataC = np.zeros((2*len(dataA),5))
+
 
 #	Change strike to the dip direction
 for x in range(len(dataA)):
@@ -26,13 +28,13 @@ a = 0
 b = 0
 c = 0
 while c < 2*len(dataA):
-	if c%2 == 0:
-		dataC[c,:] = dataA[a,:]
-		a = a+1
-		c = c+1
-	else:
-		dataC[c,:] = dataB[b,:]
-		b= b+1
-		c= c+1
+    if c%2 == 0:
+        dataC[c,2::] = dataA[a,:]
+        a = a+1
+        c = c+1
+    else:
+        dataC[c,2::] = dataB[b,:]
+        b= b+1
+        c= c+1
 
-np.savetxt('PlaneB.txt',dataC, fmt= '%1.0f',header= 'Projection3: Both planes')
+np.savetxt('projection2_both_planes.txt',dataC, fmt= '%1.0f')

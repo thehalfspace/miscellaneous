@@ -131,10 +131,10 @@ awk '{print($1,$2,$3,$4,$5,$6,$7,$8,$9)}' temp2.txt | project -C95/0 -E98.3/4.7 
 rm -f temp1.txt temp2.txt
 
 #MAKE SCATTER PLOT
-region="-R92/96/-100/0"
+region="-R94/98/-100/0"
 projection="-JX4i/1.5i"
 misc="-Y-8"
-awk '{print($12,$3*(-1.0))}' projection2.dat | psxy $region $projection -B1:Longitude:/20:Depth:WSen -W1 -Sc.2 -G200 $misc $close >> $psFile
+awk '{print($12,$3*(-1.0))}' projection3.dat | psxy $region $projection -B1:Longitude:/20:Depth:WSen -W1 -Sc.2 -G200 $misc $close >> $psFile
 ps2pdf $psFile $pdfFile
 open $pdfFile
 echo "end of script"
