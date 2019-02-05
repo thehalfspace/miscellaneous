@@ -1,0 +1,11 @@
+# GMT 5 Session common arguments shelf
+BEGIN GMT 5.4.4
+B	1:Longitude:/20:Depth:WSen
+J	X
+JM	M5i
+JX	X4i/1.5i
+R	92/96/-100/0
+X	2.5
+Y	-8
+L	13
+END
