@@ -126,15 +126,15 @@ join psmeca.txt psvelomeca.txt > temp1.txt
 ghead -n-19 temp1.txt | awk 'NR>34 {print($1,$2,$3,$15,$16,$17,$18,$19,$20)}' > temp2.txt
 
 #PROJECT DATA
-awk '{print($1,$2,$3,$4,$5,$6,$7,$8,$9)}' temp2.txt | project -C93/6 -E96/7 -W-1.5/1.5 -Lw > projection2.dat
-awk '{print($1,$2,$3,$4,$5,$6,$7,$8,$9)}' temp2.txt | project -C95/0 -E98.3/4.7 -W-1.2/1.2 -Lw > projection3.dat
-rm -f temp1.txt temp2.txt
+# awk '{print($1,$2,$3,$4,$5,$6,$7,$8,$9)}' temp2.txt | project -C93/6 -E96/7 -W-1.5/1.5 -Lw > projection2.dat
+# awk '{print($1,$2,$3,$4,$5,$6,$7,$8,$9)}' temp2.txt | project -C95/0 -E98.3/4.7 -W-1.2/1.2 -Lw > projection3.dat
+# rm -f temp1.txt temp2.txt
 
-#MAKE SCATTER PLOT
-region="-R94/98/-100/0"
-projection="-JX4i/1.5i"
-misc="-Y-8"
-awk '{print($12,$3*(-1.0))}' projection3.dat | psxy $region $projection -B1:Longitude:/20:Depth:WSen -W1 -Sc.2 -G200 $misc $close >> $psFile
+# #MAKE SCATTER PLOT
+# region="-R94/98/-100/0"
+# projection="-JX4i/1.5i"
+# misc="-Y-8"
+# awk '{print($12,$3*(-1.0))}' projection3.dat | psxy $region $projection -B1:Longitude:/20:Depth:WSen -W1 -Sc.2 -G200 $misc $close >> $psFile
 ps2pdf $psFile $pdfFile
 open $pdfFile
 echo "end of script"
