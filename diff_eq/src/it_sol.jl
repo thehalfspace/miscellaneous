@@ -3,9 +3,9 @@
 using IterativeSolvers
 using Preconditioners
 using LinearAlgebra
-using LOBPCG
 
-A = rand(5,5)
-b= rand(5)
+N = Int(1e4)
+A = rand(N,N)
+b= rand(N)
 
 x = cg(A,b)
